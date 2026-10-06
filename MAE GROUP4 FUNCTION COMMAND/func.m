@@ -1,0 +1,28 @@
+%% newton_raphson method
+x = 2;          
+tol = 1e-6;     
+max_iter = 100; 
+
+for i = 1:max_iter
+    fx = myfunc(x);   
+    dfx = myderiv(x); 
+   
+    x_new = x - fx / dfx;
+   
+    if abs(x_new - x) < tol
+        fprintf('Root found at x = %.5f after %d iterations.\n', x_new, i);
+        break;
+    end
+   
+    x = x_new;
+end
+
+function y = myfunc(x)
+    y = x - 2 * sin(x);
+end
+
+function dy = myderiv(x)
+    dy = 1 - 2 * cos(x);
+end
+
+

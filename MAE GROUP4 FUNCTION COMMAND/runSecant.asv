@@ -1,0 +1,24 @@
+function root = runSecant(x0, x1)
+    tol = 1e-6;
+    max_iter = 100;
+    
+    for iter = 2:max_iter
+        fx0 = f(x0);
+        fx1 = f(x1);
+        
+        x_next = x1 - fx1 * (x1 - x0) / (fx1 - fx0);
+        
+        if abs(x_next - x1) < tol
+            root = x_next;
+            return;
+        end
+        
+        x0 = x1;
+        x1 = x_next;
+    end
+    root = runSecant;
+end
+
+function y = f(x)
+    y = x - 2*sin(x);
+end
